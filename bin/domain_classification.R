@@ -97,6 +97,7 @@ classify_bins <- function(tiara, contig2bin, join_prokaryotes, assembler){
     softmax_probabilities <- tiara |>
         group_by(BinID) |>
         summarise(across(all_of(prob_columns), sum), .groups = "drop") |>
+        na.omit() |>
         rowwise() |>
         mutate(denominator = sum(exp(c_across(all_of(prob_columns))))) |>
         mutate(across(all_of(prob_columns), \(x) exp(x)/denominator),
