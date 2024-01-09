@@ -38,6 +38,7 @@ process METAEUK_EASYPREDICT {
         \${DB} \\
         ${prefix} \\
         tmp/ \\
+        --threads ${task.cpus} \\
         ${args}
 
     cat <<-END_VERSIONS > versions.yml
